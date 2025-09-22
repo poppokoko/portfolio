@@ -1,0 +1,244 @@
+body {
+  margin: 0;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  background: #fff;
+  color: #000;
+  font-size: 12px;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* 左サイドバー */
+.sidebar {
+  width: 200px;
+  padding: 35px;
+  box-sizing: border-box;
+}
+
+
+.nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav li {
+  margin-bottom: 10px;
+}
+
+.nav a {
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.nav a:hover,
+.nav a:focus {
+  color: #00ff00;
+
+}
+
+.nav a.active {
+  color: #00ff00;
+}
+
+/* 右側コンテンツ */
+.content {
+  flex: 1;
+  padding: 35px;
+  box-sizing: border-box;
+}
+
+.about-section {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.profile-text {
+  flex: 1;
+}
+
+.profile-image img {
+  max-width: 400px;
+  width: 100%;
+  border: 1px solid #ccc;
+}
+
+/* モバイル対応 */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .about-section {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .sidebar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+}
+
+a {
+  color: #000;
+}
+
+a:hover {
+  color: #00ff00;
+}
+.content a {
+  font-weight: normal;
+}
+
+.content strong {
+  font-weight: normal;
+}
+h1 {
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 20px;      
+  margin-bottom: 35px;
+  color: #000;
+}
+h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #000;
+}
+h3 {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #000;
+}
+.section-divider {
+  border-top: 1px solid #00ff00;
+  margin: 40px 0;
+  width: 100%;          /* デフォルトは右コンテンツ幅いっぱい */
+}
+
+@media screen and (max-width: 768px) {
+  .section-divider {
+    width: 100%;        /* モバイルも幅いっぱいにする */
+  }
+}
+.info-section {
+  margin-top: 40px;
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+.info-date {
+  width: 120px;
+  font-size: 12px;
+  color: #666;
+}
+
+.info-content {
+  flex: 1;
+  font-size: 14px;
+}
+
+.info-content a {
+  color: #000;
+}
+
+.info-content a:hover {
+  color: #00ff00;
+}
+.profile-text img {
+  max-width: 500px;  /* 最大幅を指定 */
+  width: 100%;       /* 親の幅にフィット */
+  height: auto;      /* アスペクト比を保つ */
+  margin-bottom: 20px; /* 下に余白をつける（必要なら） */
+}
+@media screen and (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    padding: 10px 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+     padding: 15px 0 0px;  /* 上に余白追加（上15px、下10px） */
+  }
+
+  .nav ul {
+    display: flex;       /* 横並びにする */
+    gap: 27px;           /* 項目の間に余白 */
+    margin: 1px;
+    padding: 0;
+  }
+
+  .nav li {
+    margin: 0;           /* 縦ナビ用の下余白をリセット */
+  }
+
+  .content {
+    padding-top: 60px;   /* ナビの高さ分余白 */
+  }
+}
+.page-section img {
+  max-width: 600px; /* 好きな最大サイズ */
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 20px;
+}
+/* デフォルトは線あり */
+.info-item {
+  border-bottom: 1px solid #ccc;
+}
+
+/* 光草ページだけ線を消す */
+.hikarikusa-page .info-item {
+  border-bottom: none;
+}
+
+/* 必要なら section-divider の線も光草ページで消す */
+.hikarikusa-page .section-divider {
+  border-top: none;
+}
+.hikarikusa-page .content {
+  padding-top: -10px;  /* ナビの分の余白を減らす（好きな値に調整OK） */
+}
+.hover-zoom img {
+  display: block;         /* 下の余白防止 */
+  width: 100%;            /* 必要なら調整 */
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.hover-zoom:hover img {
+  transform: scale(1.05); /* 5%大きく拡大 */
+}
+.section-divider-gray {
+  border-top: 1px solid #ccc;  /* グレーの線 */
+  margin: 40px 0;
+  width: 100%;
+}
+
+img.small-img {
+  max-width: 500px !important;
+}
+img.small2-img {
+  max-width: 400px !important;
+}

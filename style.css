@@ -242,3 +242,16 @@ img.small-img {
 img.small2-img {
   max-width: 400px !important;
 }
+/* PCサイズ：サイドバー固定 */
+@media screen and (min-width: 769px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+  }
+
+  .content {
+    margin-left: 200px; /* sidebarのwidthと同じ */
+  }
+}

@@ -255,3 +255,10 @@ img.small2-img {
     margin-left: 200px; /* sidebarのwidthと同じ */
   }
 }
+.work-video {
+  max-width: 800px;   /* 画像と同じサイズ感 */
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 20px;
+}

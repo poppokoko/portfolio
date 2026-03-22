@@ -2,7 +2,7 @@ body {
   margin: 0;
   font-family: 'Helvetica Neue', 'Arial', sans-serif;
   background: #fff;
-  color: #000;
+  color: #ffffff;
   font-size: 12px;
 }
 
@@ -23,6 +23,7 @@ body {
   list-style: none;
   padding: 0;
   margin: 0;
+
 }
 
 .nav li {
@@ -30,9 +31,9 @@ body {
 }
 
 .nav a {
-  color: #000;
+  color: #ffffff;
   text-decoration: none;
-  font-weight: bold;
+
   font-size: 14px;
 }
 
@@ -106,23 +107,21 @@ h1 {
   font-size: 17px;
   font-weight: bold;
   margin-top: 20px;      
-  margin-bottom: 35px;
-  color: #000;
+  color: #ffffff;
 }
 h2 {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   margin-bottom: 15px;
-  color: #000;
+  color: #ffffff;
 }
 h3 {
   font-size: 14px;
   font-weight: bold;
-  margin-bottom: 15px;
-  color: #000;
+  color: #ffffff;
 }
 .section-divider {
-  border-top: 1px solid #00ff00;
+  border-top: 1px solid #ffffff;
   margin: 40px 0;
   width: 100%;          /* デフォルトは右コンテンツ幅いっぱい */
 }
@@ -182,11 +181,9 @@ h3 {
   }
 
   .nav ul {
-    display: flex;       /* 横並びにする */
-    gap: 27px;           /* 項目の間に余白 */
     margin: 1px;
     padding: 0;
-  }
+    }
 
   .nav li {
     margin: 0;           /* 縦ナビ用の下余白をリセット */
@@ -261,4 +258,311 @@ img.small2-img {
   height: auto;
   display: block;
   margin-bottom: 20px;
+}
+/* サブメニュー */
+.submenu {
+  list-style: none;
+  margin: 4px 0 8px 12px;
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease;
+}
+
+.submenu a {
+  font-size: 12px;
+  opacity: 0.8;
+  text-decoration: none;
+}
+
+/* ボタンをリンク風に */
+.submenu-toggle {
+  all: unset;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* PC hover */
+@media (hover: hover) and (pointer: fine) {
+  .has-submenu:hover .submenu {
+    max-height: 200px;
+  }
+}
+
+/* スマホ用 open 状態 */
+.has-submenu.open .submenu {
+  max-height: 200px;
+}
+
+@media screen and (max-width: 768px) {
+
+  /* トップバー：4項目だけ横 */
+  .nav .nav-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* ★ submenu は縦（PCみたいに） */
+  .nav .submenu{
+    display: none;           /* 閉じてる時は消す */
+    list-style: none;
+    margin: 8px 0 0 0;
+    padding: 0;
+  }
+
+  .nav .submenu li{
+    margin: 6px 0;
+  }
+
+
+
+  /* スマホで開いた時だけ出す */
+  .has-submenu.open > .submenu{
+    display: block;
+  }
+}
+/* ふだんは完全に消す */
+.submenu { display:none; }
+
+/* PC：ホバー中だけ出す */
+@media (hover:hover) and (pointer:fine){
+  .has-submenu:hover > .submenu { display:block; }
+}
+
+/* スマホ：open の時だけ出す */
+@media screen and (max-width: 768px){
+  .has-submenu{ position: relative; }
+
+  .has-submenu.open > .submenu{
+
+  }
+
+  .submenu li{ margin: 6px 0; }
+  .submenu a{ display:block; font-size:12px; font-weight:normal; }
+}
+@media screen and (max-width: 768px){
+  .nav .nav-list{
+    align-items: flex-start; /* ←これ */
+  }
+}
+.submenu-toggle{
+  all: unset;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+
+}
+.submenu-toggle.active{
+  color:#00ff00;
+}
+/* PC hover */
+.nav a:hover,
+.submenu-toggle:hover,
+.submenu a:hover{
+  color:#00ff00;
+}
+
+/* スマホ hover 再現 */
+.hover{
+  color:#00ff00 !important;
+}
+
+/* ===== Scroll Altitude Background ===== */
+#bg{
+  position: fixed;
+  inset: 0;
+  z-index: -1;          /* 背面に固定 */
+  pointer-events: none;
+  background: #000;
+}
+
+#bg::before{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  /* ← ここがポイント */
+  background: rgba(255, 255, 255, 0.019); /* 20%白を乗せる */
+  
+  pointer-events:none;
+}
+
+
+
+
+
+
+
+
+/* ===== Topbar: let background show through ===== */
+@media screen and (max-width: 768px){
+  .sidebar{
+    background: transparent !important;  /* ←白を殺す */
+  }
+
+  /* 文字が読みにくければ、薄い白ベールだけ足す（70%とか） */
+  .sidebar::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background: rgba(255,255,255,0.0);  /* ←まず0で試す */
+    pointer-events:none;
+  }
+}
+
+
+
+
+
+
+#stars{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  opacity: var(--stars, 0);
+  transition: opacity .2s linear;
+  pointer-events:none;
+}
+#meteors{
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 2;
+  opacity: var(--stars, 1);
+}
+
+/* ===== Scroll Altitude Background ===== */
+#bg{
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: #000;
+  overflow: hidden;
+}
+
+/* 遠景の雲 */
+#bg::before{
+  content:"";
+  position:absolute;
+  inset:-20%;
+  pointer-events:none;
+
+  opacity: calc(var(--cloud, 0) * 0.7);
+
+  background:
+    radial-gradient(ellipse 360px 180px at 35% 48%,
+      rgba(255,255,255,.42) 0%,
+      rgba(255,255,255,.16) 52%,
+      rgba(255,255,255,0) 82%
+    ),
+    radial-gradient(ellipse 300px 150px at 68% 54%,
+      rgba(255,255,255,.38) 0%,
+      rgba(255,255,255,.14) 50%,
+      rgba(255,255,255,0) 80%
+    ),
+    radial-gradient(ellipse 260px 130px at 82% 46%,
+      rgba(255,255,255,.34) 0%,
+      rgba(255,255,255,.12) 50%,
+      rgba(255,255,255,0) 80%
+    );
+
+  filter: blur(22px);
+  animation: cloudFar 55s linear infinite;
+  mix-blend-mode: screen;
+}
+
+/* 手前の雲 */
+#bg::after{
+  content:"";
+  position:absolute;
+  inset:-20%;
+  pointer-events:none;
+
+  opacity: calc(var(--cloud, 0) * 0.95);
+
+  background:
+    radial-gradient(ellipse 260px 130px at 22% 34%,
+      rgba(255,255,255,.92) 0%,
+      rgba(255,255,255,.55) 40%,
+      rgba(255,255,255,0) 75%
+    ),
+    radial-gradient(ellipse 180px 90px at 30% 32%,
+      rgba(255,255,255,.85) 0%,
+      rgba(255,255,255,.45) 50%,
+      rgba(255,255,255,0) 80%
+    ),
+    radial-gradient(ellipse 320px 160px at 55% 44%,
+      rgba(255,255,255,.95) 0%,
+      rgba(255,255,255,.60) 40%,
+      rgba(255,255,255,.25) 60%,
+      rgba(255,255,255,0) 85%
+    ),
+    radial-gradient(ellipse 200px 110px at 65% 40%,
+      rgba(255,255,255,.85) 0%,
+      rgba(255,255,255,.42) 50%,
+      rgba(255,255,255,0) 80%
+    ),
+    radial-gradient(ellipse 300px 150px at 82% 38%,
+      rgba(255,255,255,.92) 0%,
+      rgba(255,255,255,.55) 40%,
+      rgba(255,255,255,.22) 60%,
+      rgba(255,255,255,0) 85%
+    );
+
+  filter: blur(12px);
+  animation: cloudMove 24s linear infinite;
+  mix-blend-mode: screen;
+}
+
+@keyframes cloudMove{
+  from{ transform: translateX(0); }
+  to{ transform: translateX(-320px); }
+}
+
+@keyframes cloudFar{
+  from{ transform: translateX(0); }
+  to{ transform: translateX(-180px); }
+}
+
+
+.content-image {
+  width: 100%;
+  max-width: 1000px;
+  max-height: 85vh;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 20px;
+}
+
+.content-image-top {
+  margin: 30px auto;
+}
+
+@media (min-width: 1200px) {
+  .content-image {
+    max-width: 900px;
+  }
+}
+.full-image {
+  width: 100%;
+  max-width: none;   /* ←制限解除 */
+  display: block;
+  margin: 30px 0;    /* 横中央寄せしないならこれ */
 }
